@@ -98,48 +98,6 @@ function openSalesforceLink(tab, menuItemId) {
   }
 }
 
-
-// Handle Click Events
-// chrome.contextMenus.onClicked.addListener((info, tab) => {
-//   if (!tab?.url) return;
-
-//   try {
-//     const baseUrl = new URL(tab.url).origin;
-//     const currentGroupId = tab.groupId;
-
-//     chrome.storage.local.get("savedLinks", (data) => {
-//       const selectedItem = data.savedLinks?.find(
-//         link => link.id === info.menuItemId
-//       );
-
-//       if (!selectedItem) return;
-
-//       const url = selectedItem.path
-//         ? baseUrl + selectedItem.path
-//         : selectedItem.url;
-
-//       // 1️⃣ Create tab normally
-//       chrome.tabs.create({ url }, (newTab) => {
-//         if (
-//           chrome.runtime.lastError ||
-//           !newTab ||
-//           currentGroupId === -1
-//         ) {
-//           return;
-//         }
-
-//         // 2️⃣ Move tab into the existing group
-//         chrome.tabs.group({
-//           tabIds: newTab.id,
-//           groupId: currentGroupId
-//         });
-//       });
-//     });
-//   } catch (error) {
-//     console.error("Error handling menu item click:", error);
-//   }
-// });
-
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   openSalesforceLink(tab, info.menuItemId);
 });
